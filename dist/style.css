@@ -1,0 +1,78 @@
+/*!********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/sass/index.sass ***!
+  \********************************************************************************************************************************************************/
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+.appWrapper {
+  width: 100%;
+  min-height: 100vh;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to top, #373b44, #4286f4);
+}
+
+.toolbar {
+  background-color: red;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.toolbar span {
+  display: block;
+}
+
+.windowName {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.editor-wrapper {
+  margin: 12px;
+  border: 2px solid black;
+}
+
+.editor {
+  width: 600px;
+  min-height: 250px;
+  resize: vertical;
+  overflow: auto;
+  padding: 8px;
+  outline-style: none;
+}
+
+.previewer-wrapper {
+  margin: 12px;
+  border: 2px solid black;
+}
+
+.previewer {
+  padding: 8px;
+  white-space: pre;
+  width: 800px;
+  background-color: white;
+}
+.previewer table {
+  border-collapse: collapse;
+}
+.previewer td, .previewer th {
+  border: 2px solid black;
+  padding: 6px;
+  margin: 0px;
+}
+.previewer th {
+  font-weight: 600;
+}
+.previewer img {
+  display: block;
+  max-width: 90%;
+  margin: auto;
+}
