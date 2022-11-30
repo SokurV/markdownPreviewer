@@ -28,6 +28,26 @@ body {
   background: linear-gradient(to bottom, #00b4db, #0083b0);
 }
 
+.hide {
+  display: none;
+}
+
+.hideButton {
+  border: 1px solid #000;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 1.5rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition-duration: 0.3s;
+}
+
+.hideButton:hover {
+  color: white;
+  background-color: #000;
+  transition-duration: 0.3s;
+}
+
 .toolbar {
   border-radius: 6px;
   box-shadow: 0px 0px 12px 3px black;
@@ -53,7 +73,7 @@ body {
   margin: 12px;
 }
 
-.editor {
+.editor, .editorMax {
   border-radius: 6px;
   box-shadow: 0px 0px 12px 3px black;
   width: 600px;
@@ -67,15 +87,19 @@ body {
   font-size: 1rem;
 }
 
-.editor::-moz-placeholder {
+.editorMax {
+  height: 92vh;
+}
+
+.editor::-moz-placeholder, .editorMax::-moz-placeholder {
   color: #000;
 }
 
-.editor::placeholder {
+.editor::placeholder, .editorMax::placeholder {
   color: #000;
 }
 
-.editor::-webkit-scrollbar {
+.editor::-webkit-scrollbar, .editorMax::-webkit-scrollbar {
   width: 0px;
 }
 
@@ -83,59 +107,64 @@ body {
   margin: 12px;
 }
 
-.previewer {
+.previewer, .previewerMax {
   border-radius: 6px;
   box-shadow: 0px 0px 12px 3px black;
   font-family: "Josefin Sans", sans-serif;
   font-weight: 300;
   font-size: 1.2rem;
   font-weight: 200;
-  padding: 8px;
-  white-space: pre;
+  padding: 8px 12px;
   width: 800px;
   min-height: 360px;
   background-color: #87CEEB;
 }
-.previewer h1, .previewer h2 {
-  margin: 0.25em;
+.previewer h1, .previewerMax h1, .previewer h2, .previewerMax h2, .previewer h3, .previewerMax h3 {
+  margin: 1.5rem auto;
+  border-bottom: 2px solid #000;
 }
-.previewer hr {
+.previewer hr, .previewerMax hr {
+  display: none;
   margin: 12px 0px;
   border-bottom: 1px solid #000;
 }
-.previewer table {
+.previewer p, .previewerMax p, .previewer li, .previewerMax li {
+  margin: 0px auto;
+  line-height: 1.5rem;
+}
+.previewer table, .previewerMax table {
   border-collapse: collapse;
 }
-.previewer td, .previewer th {
+.previewer td, .previewerMax td, .previewer th, .previewerMax th {
   border: 2px solid black;
   padding: 6px;
   margin: 0px;
 }
-.previewer th {
+.previewer th, .previewerMax th {
   font-weight: 600;
 }
-.previewer code, .previewer pre {
+.previewer code, .previewerMax code, .previewer pre, .previewerMax pre {
   display: inline-block;
   font-size: 1rem;
   background-color: #FFFFF0;
   padding: 4px;
   border-radius: 0.4rem;
 }
-.previewer blockquote {
+.previewer blockquote, .previewerMax blockquote {
   padding: 0px auto;
 }
-.previewer blockquote p::before {
-  content: "|";
-  text-align: center;
-  font-size: 1.4em;
+.previewer blockquote p::before, .previewerMax blockquote p::before {
+  content: "| ";
+  text-align: left;
+  font-size: 1.5rem;
   font-weight: 600;
 }
-.previewer ul {
-  margin: 0px 15px;
-  padding: 0px 15px;
-}
-.previewer img {
+.previewer img, .previewerMax img {
   display: block;
   max-width: 90%;
   margin: auto;
+}
+
+.previewerMax {
+  height: auto;
 }

@@ -16,6 +16,7 @@ export default class App extends React.Component {
 
         }
         this.textSaver = this.textSaver.bind(this)
+        this.hideBlock = this.hideBlock.bind(this)
     }
 
     textSaver(event){
@@ -26,11 +27,23 @@ export default class App extends React.Component {
             })
     }
 
+    hideBlock(event){
+        if(event.target.getAttribute('id') == 'editorButton') {
+            document.getElementById('editor').classList.toggle('editorMax')
+            document.getElementById('prevWrap').classList.toggle('hide')
+        }
+
+        if(event.target.getAttribute('id') == 'previewerButton') {
+            document.getElementById('editWrap').classList.toggle('hide')
+            document.getElementById('preview').classList.toggle('previewerMax')
+        }
+    }
+
     render(){
         return (
             <div className="appWrapper">
-                <Editor textSaver={this.textSaver} entered_text={this.state.entered_text}/>
-                <Previewer markdown={this.state.entered_text}/>  
+                <Editor textSaver={this.textSaver} hideBlockFunc={this.hideBlock} entered_text={this.state.entered_text}/>
+                <Previewer hideBlockFunc={this.hideBlock} markdown={this.state.entered_text}/>  
             </div>
         )
     }
@@ -45,9 +58,15 @@ class Editor extends React.Component {
     render(){
 
         return (
-            <div  className="editor-wrapper" >
+            <div  id="editWrap" className="editor-wrapper" >
                 <div className="toolbar">
                     <span className="windowName">Editor</span>
+                    <button id="editorButton" 
+                    onClick={this.props.hideBlockFunc} 
+                    className="hideButton"
+                    title="Full screen">
+                        &#10530;
+                    </button>
                 </div>
                 <textarea
                     placeholder="Enter code..."
@@ -79,9 +98,15 @@ class Previewer extends React.Component {
         }
 
         return (
-            <div className="previewer-wrapper">
+            <div id="prevWrap" className="previewer-wrapper">
                 <div className="toolbar">
                     <span className="windowName">Previewer</span>
+                    <button id="previewerButton" 
+                    onClick={this.props.hideBlockFunc} 
+                    className="hideButton"
+                    title="Full screen">
+                        &#10530;
+                    </button>
                 </div>
                 <div id="preview" className="previewer" dangerouslySetInnerHTML={
                     {__html: marked(this.props.markdown, {renderer: markedOpt})}

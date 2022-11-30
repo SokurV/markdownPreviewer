@@ -35,6 +35,23 @@ body
     align-items: center 
     background: $background
 
+.hide
+    display: none
+
+.hideButton
+    border: 1px solid #000
+    border-radius: 6px
+    background-color: #fff
+    font-size: 1.5rem
+    font-weight: 400
+    cursor: pointer
+    transition-duration: 0.3s
+
+.hideButton:hover
+    color: white
+    background-color: #000
+    transition-duration: 0.3s
+
 .toolbar
     @include wrap_box_style
     background-color: $dark_color
@@ -67,6 +84,10 @@ body
     border: none
     font-size: 1rem
 
+.editorMax
+    @extend .editor
+    height: 92vh
+
 .editor::placeholder
     color: #000
 
@@ -81,18 +102,23 @@ body
     @include text_style
     font-size: 1.2rem
     font-weight: 200
-    padding: 8px
-    white-space: pre
+    padding: 8px 12px
     width: 800px
     min-height: 360px
     background-color: $light_color
 
-    h1, h2
-        margin: 0.25em
+    h1, h2, h3
+        margin: 1.5rem auto
+        border-bottom: 2px solid #000
 
     hr
+        display: none
         margin: 12px 0px
         border-bottom: 1px solid #000
+
+    p, li
+        margin: 0px auto
+        line-height: 1.5rem
 
     table
         border-collapse: collapse
@@ -115,16 +141,16 @@ body
     blockquote
         padding: 0px auto
         p::before
-            content: '|'
-            text-align: center
-            font-size: 1.4em
+            content: '| '
+            text-align: left
+            font-size: 1.5rem
             font-weight: 600
-
-    ul
-        margin: 0px 15px
-        padding: 0px 15px
 
     img
         display: block
         max-width: 90%
         margin: auto
+
+.previewerMax
+    @extend .previewer
+    height: auto
