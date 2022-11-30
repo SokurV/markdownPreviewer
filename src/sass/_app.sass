@@ -1,3 +1,24 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap')
+    
+$background: linear-gradient(to bottom, #00b4db, #0083b0)
+$dark_color: #00BFFF
+$light_color: #87CEEB
+$code_color: #FFFFF0
+
+@mixin shadow
+    box-shadow: 0px 0px 12px 3px black
+
+@mixin wrap_box_style
+    border-radius: 6px
+    @include shadow
+
+@mixin text_style
+    font-family: 'Josefin Sans', sans-serif
+    font-weight: 300
+
+
 *
     box-sizing: border-box
 
@@ -12,11 +33,13 @@ body
     display: flex
     flex-direction: column
     align-items: center 
-    background: linear-gradient(to top, #373b44, #4286f4)
+    background: $background
 
 .toolbar
-    background-color: red
+    @include wrap_box_style
+    background-color: $dark_color
     padding: 10px
+    margin-bottom: 16px
     display: flex
     justify-content: space-between
     align-items: center
@@ -25,30 +48,51 @@ body
         display: block
 
 .windowName
-    font-family: Arial, Helvetica, sans-serif
-
+    @include text_style
+    font-size: 1.25rem
+    font-weight: 600
 
 .editor-wrapper
     margin: 12px
-    border: 2px solid black
 
 .editor
+    @include wrap_box_style
     width: 600px
     min-height: 250px
+    background-color: $light_color
     resize: vertical
     overflow: auto
     padding: 8px
     outline-style: none
+    border: none
+    font-size: 1rem
+
+.editor::placeholder
+    color: #000
+
+.editor::-webkit-scrollbar
+    width: 0px
 
 .previewer-wrapper
     margin: 12px
-    border: 2px solid black
-
+    
 .previewer
+    @include wrap_box_style
+    @include text_style
+    font-size: 1.2rem
+    font-weight: 200
     padding: 8px
     white-space: pre
     width: 800px
-    background-color: white
+    min-height: 360px
+    background-color: $light_color
+
+    h1, h2
+        margin: 0.25em
+
+    hr
+        margin: 12px 0px
+        border-bottom: 1px solid #000
 
     table
         border-collapse: collapse
@@ -60,6 +104,25 @@ body
 
     th
         font-weight: 600
+
+    code, pre
+        display: inline-block
+        font-size: 1rem
+        background-color: $code_color
+        padding: 4px
+        border-radius: 0.4rem
+
+    blockquote
+        padding: 0px auto
+        p::before
+            content: '|'
+            text-align: center
+            font-size: 1.4em
+            font-weight: 600
+
+    ul
+        margin: 0px 15px
+        padding: 0px 15px
 
     img
         display: block

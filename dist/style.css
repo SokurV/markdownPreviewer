@@ -1,6 +1,14 @@
 /*!********************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/sass/index.sass ***!
   \********************************************************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap);
+/*!************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/sass/index.sass (1) ***!
+  \************************************************************************************************************************************************************/
+@import url(https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap);
+/*!************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/sass/index.sass (2) ***!
+  \************************************************************************************************************************************************************/
 * {
   box-sizing: border-box;
 }
@@ -17,12 +25,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(to top, #373b44, #4286f4);
+  background: linear-gradient(to bottom, #00b4db, #0083b0);
 }
 
 .toolbar {
-  background-color: red;
+  border-radius: 6px;
+  box-shadow: 0px 0px 12px 3px black;
+  background-color: #00BFFF;
   padding: 10px;
+  margin-bottom: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,33 +43,65 @@ body {
 }
 
 .windowName {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 300;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .editor-wrapper {
   margin: 12px;
-  border: 2px solid black;
 }
 
 .editor {
+  border-radius: 6px;
+  box-shadow: 0px 0px 12px 3px black;
   width: 600px;
   min-height: 250px;
+  background-color: #87CEEB;
   resize: vertical;
   overflow: auto;
   padding: 8px;
   outline-style: none;
+  border: none;
+  font-size: 1rem;
+}
+
+.editor::-moz-placeholder {
+  color: #000;
+}
+
+.editor::placeholder {
+  color: #000;
+}
+
+.editor::-webkit-scrollbar {
+  width: 0px;
 }
 
 .previewer-wrapper {
   margin: 12px;
-  border: 2px solid black;
 }
 
 .previewer {
+  border-radius: 6px;
+  box-shadow: 0px 0px 12px 3px black;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 300;
+  font-size: 1.2rem;
+  font-weight: 200;
   padding: 8px;
   white-space: pre;
   width: 800px;
-  background-color: white;
+  min-height: 360px;
+  background-color: #87CEEB;
+}
+.previewer h1, .previewer h2 {
+  margin: 0.25em;
+}
+.previewer hr {
+  margin: 12px 0px;
+  border-bottom: 1px solid #000;
 }
 .previewer table {
   border-collapse: collapse;
@@ -70,6 +113,26 @@ body {
 }
 .previewer th {
   font-weight: 600;
+}
+.previewer code, .previewer pre {
+  display: inline-block;
+  font-size: 1rem;
+  background-color: #FFFFF0;
+  padding: 4px;
+  border-radius: 0.4rem;
+}
+.previewer blockquote {
+  padding: 0px auto;
+}
+.previewer blockquote p::before {
+  content: "|";
+  text-align: center;
+  font-size: 1.4em;
+  font-weight: 600;
+}
+.previewer ul {
+  margin: 0px 15px;
+  padding: 0px 15px;
 }
 .previewer img {
   display: block;

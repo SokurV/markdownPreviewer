@@ -50,6 +50,7 @@ class Editor extends React.Component {
                     <span className="windowName">Editor</span>
                 </div>
                 <textarea
+                    placeholder="Enter code..."
                     id="editor"
                     className="editor"
                     onChange={this.props.textSaver} 
@@ -69,8 +70,13 @@ class Previewer extends React.Component {
     render() {
         const markedOpt = new marked.Renderer();
         markedOpt.link = function (href, title, text) {
-            return `<a target="_blank" href="${href}">${text}</a>`;
-        };
+            return `<a target="_blank" href="${href}">${text}</a>`
+        }
+        markedOpt.heading = function (text, level) {
+            return level <= 2?
+                `<h${level}>${text}</h${level}><hr>`
+                :`<h${level}>${text}</h${level}>`
+        }
 
         return (
             <div className="previewer-wrapper">
