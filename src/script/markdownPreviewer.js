@@ -13,7 +13,6 @@ export default class App extends React.Component {
         super(props)
         this.state = {
             entered_text: startText
-
         }
         this.textSaver = this.textSaver.bind(this)
         this.hideBlock = this.hideBlock.bind(this)
@@ -29,21 +28,26 @@ export default class App extends React.Component {
 
     hideBlock(event){
         if(event.target.getAttribute('id') == 'editorButton') {
-            document.getElementById('editor').classList.toggle('editorMax')
+            document.getElementById('editor').classList.toggle('editor__textarea_maxsize')
             document.getElementById('prevWrap').classList.toggle('hide')
         }
 
         if(event.target.getAttribute('id') == 'previewerButton') {
             document.getElementById('editWrap').classList.toggle('hide')
-            document.getElementById('preview').classList.toggle('previewerMax')
+            document.getElementById('preview').classList.toggle('previewer__result_maxsize')
         }
     }
 
     render(){
         return (
-            <div className="appWrapper">
-                <Editor textSaver={this.textSaver} hideBlockFunc={this.hideBlock} entered_text={this.state.entered_text}/>
-                <Previewer hideBlockFunc={this.hideBlock} markdown={this.state.entered_text}/>  
+            <div className="container">
+                <Editor 
+                    textSaver={this.textSaver} 
+                    hideBlock={this.hideBlock} 
+                    entered_text={this.state.entered_text}/>
+                <Previewer 
+                    hideBlockFunc={this.hideBlock} 
+                    markdown={this.state.entered_text}/>  
             </div>
         )
     }
@@ -58,20 +62,23 @@ class Editor extends React.Component {
     render(){
 
         return (
-            <div  id="editWrap" className="editor-wrapper" >
-                <div className="toolbar">
-                    <span className="windowName">Editor</span>
-                    <button id="editorButton" 
-                    onClick={this.props.hideBlockFunc} 
-                    className="hideButton"
-                    title="Full screen">
-                        &#10530;
-                    </button>
-                </div>
+            <div  id="editWrap" className="editor" >
+                <Toolbar 
+                    className="toolbar"
+                    toolbar__title="toolbar__title"
+                    toolbar__text="Editor">
+                        <Button 
+                        id = 'editorButton'
+                        className = 'toolbar__button'
+                        onClick={this.props.hideBlock}
+                        button__title="Full screen"
+                        button__text = '&#10530;'
+                    />
+                </Toolbar>
                 <textarea
                     placeholder="Enter code..."
                     id="editor"
-                    className="editor"
+                    className="editor__textarea"
                     onChange={this.props.textSaver} 
                     value={this.props.entered_text}>
                 </textarea>
@@ -98,23 +105,61 @@ class Previewer extends React.Component {
         }
 
         return (
-            <div id="prevWrap" className="previewer-wrapper">
-                <div className="toolbar">
-                    <span className="windowName">Previewer</span>
-                    <button id="previewerButton" 
-                    onClick={this.props.hideBlockFunc} 
-                    className="hideButton"
-                    title="Full screen">
-                        &#10530;
-                    </button>
-                </div>
-                <div id="preview" className="previewer" dangerouslySetInnerHTML={
+            <div id="prevWrap" className="previewer">
+                <Toolbar 
+                    className="toolbar"
+                    toolbar__title="toolbar__title"
+                    toolbar__text="Previewer">
+                    <Button 
+                        id = 'previewerButton'
+                        className = 'toolbar__button'
+                        onClick={this.props.hideBlockFunc}
+                        button__title="Full screen"
+                        button__text = '&#10530;'
+                    />
+                </Toolbar> 
+                <div id="preview" className="previewer__result" dangerouslySetInnerHTML={
                     {__html: marked(this.props.markdown, {renderer: markedOpt})}
                 }></div>
             </div>
         )
     }
 }
+
+class Toolbar extends React.Component {
+    constructor(props){
+        super(props)
+    }
+    render(){
+        return (
+            <div className={this.props.className}>
+                <span className={this.props.toolbar__title}>
+                    {this.props.toolbar__text}
+                </span>
+                {this.props.children}
+            </div>
+        )
+    }
+}
+
+class Button extends React.Component {
+    constructor(props){
+        super(props)
+    }
+
+    render() {
+        return (
+            <button 
+            id={this.props.id} 
+            onClick={this.props.onClick} 
+            className={this.props.className}
+            title={this.props.button__title}>
+                {this.props.button__text}
+            </button>
+        )
+    }
+}
+
 
 const startText = `# Welcome to my React Markdown Previewer!
 

@@ -26,7 +26,7 @@ body
     margin: 0px
     padding: 0px
 
-.appWrapper
+.container
     width: 100%
     min-height: 100vh
     max-height: 100%
@@ -38,20 +38,6 @@ body
 .hide
     display: none
 
-.hideButton
-    border: 1px solid #000
-    border-radius: 6px
-    background-color: #fff
-    font-size: 1.5rem
-    font-weight: 400
-    cursor: pointer
-    transition-duration: 0.3s
-
-.hideButton:hover
-    color: white
-    background-color: #000
-    transition-duration: 0.3s
-
 .toolbar
     @include wrap_box_style
     background-color: $dark_color
@@ -61,18 +47,30 @@ body
     justify-content: space-between
     align-items: center
 
-    span
-        display: block
-
-.windowName
+.toolbar__title
     @include text_style
+    display: block
     font-size: 1.25rem
     font-weight: 600
+    
+.toolbar__button
+    border: 1px solid #000
+    border-radius: 6px
+    background-color: #fff
+    font-size: 1.5rem
+    font-weight: 400
+    cursor: pointer
+    transition-duration: 0.3s
 
-.editor-wrapper
-    margin: 12px
+.toolbar__button:hover
+    color: white
+    background-color: #000
+    transition-duration: 0.3s
 
 .editor
+    margin: 12px
+
+.editor__textarea
     @include wrap_box_style
     width: 600px
     min-height: 250px
@@ -84,20 +82,20 @@ body
     border: none
     font-size: 1rem
 
-.editorMax
-    @extend .editor
+.editor__textarea_maxsize
+    @extend .editor__textarea
     height: 92vh
 
-.editor::placeholder
+.editor__textarea::placeholder
     color: #000
 
-.editor::-webkit-scrollbar
+.editor__textarea::-webkit-scrollbar
     width: 0px
 
-.previewer-wrapper
+.previewer
     margin: 12px
     
-.previewer
+.previewer__result
     @include wrap_box_style
     @include text_style
     font-size: 1.2rem
@@ -139,7 +137,7 @@ body
         border-radius: 0.4rem
 
     blockquote
-        padding: 0px auto
+        padding: 12px
         p::before
             content: '| '
             text-align: left
@@ -151,6 +149,6 @@ body
         max-width: 90%
         margin: auto
 
-.previewerMax
-    @extend .previewer
+.previewer__result_maxsize
+    @extend .previewer__result
     height: auto
