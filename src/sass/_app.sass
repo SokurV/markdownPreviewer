@@ -10,81 +10,53 @@ $code_color: #FFFFF0
 @mixin shadow
     box-shadow: 0px 0px 12px 3px black
 
-@mixin wrap_box_style
+@mixin wrap-box-style
     border-radius: 6px
     @include shadow
 
-@mixin text_style
+@mixin text-style
     font-family: 'Josefin Sans', sans-serif
     font-weight: 300
-
+    font-size: 1.25rem
+    font-weight: 600
 
 *
     box-sizing: border-box
 
 body
-    margin: 0px
     padding: 0px
+    margin: 0px
 
 .container
-    width: 100%
     min-height: 100vh
-    max-height: 100%
     display: flex
     flex-direction: column
-    align-items: center 
-    background: $background
-
-.hide
-    display: none
-
-.toolbar
-    @include wrap_box_style
-    background-color: $dark_color
-    padding: 10px
-    margin-bottom: 16px
-    display: flex
-    justify-content: space-between
     align-items: center
 
-.toolbar__title
-    @include text_style
-    display: block
-    font-size: 1.25rem
-    font-weight: 600
-    
-.toolbar__button
-    border: 1px solid #000
-    border-radius: 6px
-    background-color: #fff
-    font-size: 1.5rem
-    font-weight: 400
-    cursor: pointer
-    transition-duration: 0.3s
+.container_style    
+    background: $background
 
-.toolbar__button:hover
-    color: white
-    background-color: #000
-    transition-duration: 0.3s
+.editor-wrapper
+    margin: 16px
+    margin-top: 32px
+    width: 600px
 
-.editor
-    margin: 12px
+/* .editor-wrapper_style
+    border: 2px solid red */
 
 .editor__textarea
-    @include wrap_box_style
-    width: 600px
-    min-height: 250px
-    background-color: $light_color
+    width: 100%
+    height: 250px
     resize: vertical
-    overflow: auto
+    overflow: scroll
     padding: 8px
+    
+.editor__textarea_style
+    @include wrap-box-style
+    background-color: $light_color
     outline-style: none
     border: none
     font-size: 1rem
-
-.editor__textarea_maxsize
-    @extend .editor__textarea
-    height: 92vh
 
 .editor__textarea::placeholder
     color: #000
@@ -92,17 +64,22 @@ body
 .editor__textarea::-webkit-scrollbar
     width: 0px
 
-.previewer
-    margin: 12px
+.previewer-wrapper
+    width: 800px
+    min-width: 600px
+    margin: 16px
+    margin-bottom: 32px
     
 .previewer__result
-    @include wrap_box_style
-    @include text_style
+    min-width: 320px
+    min-height: 60px
+
+.previewer__result_style
+    @include wrap-box-style
+    @include text-style
     font-size: 1.2rem
     font-weight: 200
-    padding: 8px 12px
-    width: 800px
-    min-height: 360px
+    padding: 12px
     background-color: $light_color
 
     h1, h2, h3
@@ -149,6 +126,78 @@ body
         max-width: 90%
         margin: auto
 
-.previewer__result_maxsize
-    @extend .previewer__result
+.toolbar
+    min-width: 320px
+    height: 50px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 16px
+
+.toolbar_style
+    @include wrap-box-style
+    background-color: $dark_color
+    padding: 10px
+
+.toolbar__title
+    display: block
+
+.toolbar__title_style
+    @include text-style
+
+.toolbar__button
+    width: 32px
+    height: 32px
+
+.toolbar__button_style
+    border: 1px solid #000
+    border-radius: 6px
+    background-color: #fff
+    font-size: 1.5rem
+    font-weight: 400
+    cursor: pointer
+    transition-duration: 0.3s
+
+.toolbar__button_style:hover
+    color: white
+    background-color: #000
+    transition-duration: 0.3s
+
+.hide
+    display: none
+/* 
+    Нужно задать изменение высоты textarea 
+    по мере заполнения, без скролла
+ */
+.editor-textarea_maxsize 
+    height: 80vh
+
+.previewer_maxsize
     height: auto
+
+@media screen and (max-width: 850px)
+    .previewer-wrapper
+        width: auto
+
+
+/* Почему textarea не пытается растянуть обёртку 
+    до краёв экрана как это делает содержимое Previewer */
+@media screen and (max-width: 650px)
+    .editor-wrapper
+        width: auto
+
+    .previewer-wrapper
+        min-width: auto
+
+@media screen and (max-width: 510px)
+    .previewer__result_style
+        pre
+            display: none
+
+        pre::after
+            content: "Code block not visible"
+            display: block
+            border: 2px solid red
+
+        table
+            display: none
